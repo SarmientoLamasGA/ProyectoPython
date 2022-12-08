@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Página de usuario</h1>
+    {% if not request.user.is_authenticated %}
+        <p>No logeado</p>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+        <p>Logeado</p>
+    {% endif %}
+{% endblock%}

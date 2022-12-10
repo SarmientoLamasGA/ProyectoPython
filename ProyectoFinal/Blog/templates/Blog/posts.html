@@ -1,0 +1,19 @@
+{% extends "../../static/Blog/index.html" %} 
+
+{% block contenido_dinamico%}
+    
+    <button><a href="{% url 'inicio' %}">Home</a></button>
+    <h1>Posteos</h1>
+    
+    {% for post in posts %}
+
+    <article>
+        <button><a href="{% url 'Post puntual' post_id=post.id %}">{{post.title}}</a></button>
+        <p>{{post.body}}</p>
+        <p>Autor: {{post.author}}</p>
+    </article>
+
+    {% endfor %}
+
+
+{%endblock%}

@@ -12,6 +12,9 @@
     </header>
 
     {% block contenido_dinamico %}
+    <button><a href="{% url 'Lista de posts' %}">Posteos</a></button>
+    <button><a href="{% url 'Crear post' %}">Crear post</a></button>
+
     <h1>me voy</h1>
     {% endblock %}
 

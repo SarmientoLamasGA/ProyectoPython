@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 import datetime
@@ -18,11 +18,11 @@ def crear_post(request):
         if miForm.is_valid:
             info = miForm.cleaned_data
 
-            post = Post (title = info['title'], date = datetime.datetime.now(), body = info['body'], tags = info['tags'], author = info['author'], comments = info['comments'])
+            post = Post (title = info['title'], date = datetime.datetime.now(), body = info['body'], tags = info['tags'], author = info['author'])
             post.save()
+            print(post.id)
 
-
-            return render(request, 'Blog/templates/Blog/crear_post.html',{"miForm":miForm})
+            return redirect('../post_puntual/'+str(post.id),{ 'post_id': post.id})
 
     else:
         miForm = CrearPostFormulario()

@@ -10,6 +10,6 @@ class Post(models.Model):
 
 class Comments(models.Model):
 
-    user = models.CharField(max_length = 50, blank=True)
+    user = models.CharField(max_length = 50)
     body_comment = models.TextField()
     post_id = models.IntegerField(null=True)

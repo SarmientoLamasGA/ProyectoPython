@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
 
 from .models import UserProfile
@@ -10,9 +8,6 @@ from .forms import UserForm, ProfileForm
 
 def user(request):
     return render(request, "user.html")
-
-class UserLogin(LoginView):
-    template_name = "login.html"
 
 def register(request):
     if request.method == "POST":
@@ -24,3 +19,9 @@ def register(request):
     else:
         form = UserForm()
     return render(request, "register.html", {"form": form})
+
+class UserLogin(LoginView):
+    template_name = "login.html"
+
+class UserLougout(LogoutView):
+    template_name = "logout.html"

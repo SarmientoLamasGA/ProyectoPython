@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Página de usuario</h1>
-    {{context.mensaje}}
-    {% if context %}
-    creado {{context.username}}
+    {% if request.user.is_authenticated %}
+    <div>
+        <h1>Página de usuario</h1>
+        <p>Hola {{request.user.username}}</p>
+    </div>
+    <div>
+        <a href="{% url 'Logout' %}">Cerrar sesión</a>
+    </div>
+    
+    {% else %}
+    <div>
+        <h1>Has ingresado como invitado</h1>
+        <a href="{% url 'Login' %}">Iniciar sesión</a>
+        <p>¿Deseas registrarte?</p>
+        <a href="{% url 'Register' %}">Ir al registro</a>
+    </div>
     {% endif %}
-    {% if not request.user.is_authenticated %}
-        <p>No logeado</p>
-    {% endif %}
-    {% if not request.user.is_authenticated %}
-        <p>Logeado</p>
-    {% endif %}
+
+
 {% endblock%}

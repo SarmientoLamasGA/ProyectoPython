@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>Página de usuario</h1>
+    {% if context %}
+    creado {{context.username}}
+    {% endif %}
     {% if not request.user.is_authenticated %}
         <p>No logeado</p>
     {% endif %}

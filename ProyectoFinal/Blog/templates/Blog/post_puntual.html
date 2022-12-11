@@ -1,0 +1,35 @@
+{% extends "../../static/Blog/index.html" %} 
+
+{% block contenido_dinamico%}
+
+<article class="container text-center align-items-center mb-5 p-5 col-sm-6">
+    <h1 class="fs-7">{{post.title}}</h1>
+    <p class="fs-5">{{post.body}}</p>
+    <p class="fs-4">Autor: {{post.author}}</p>
+</article>
+
+<div class="container flex-column d-flex justify-content-center align-items-center ">
+    
+
+    <div class="d-flex  mb-3 flex-column">
+
+        <h3 class=" text-center">Comentarios</h3>
+
+    {% for comment in comments %}
+        <div class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4">
+            <h4 class="">{{comment.user}}</h4>
+            <p>{{comment.body_comment}}</p>
+        </div>
+    {% endfor%}
+    </div>
+
+    <form class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4" action="" method="POST">{% csrf_token %}
+        
+        <table class="table align-items-center border m-2 p-2">{{miForm2.as_table}}</table>
+
+        <button type="submit" value="Enviar">Enviar comentario</button> 
+
+    </form>
+</div>
+
+{%endblock%}

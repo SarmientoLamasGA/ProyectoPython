@@ -11,6 +11,6 @@ class UserProfile(models.Model):
     lastName = models.CharField(max_length=40, null=False)
     author = models.BooleanField(null=False)
 
-#class Avatar(models.Model):
-#    user = models.ForeignKey(User, on_delete=models.CASCADE)
-#    image = models.ImageField(upload_to="images", null=True, blank=True)
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="avatar", null=True, blank=True)

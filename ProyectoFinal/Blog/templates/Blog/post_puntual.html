@@ -11,16 +11,18 @@
 <div>
     <h3>Comentarios</h3>
 
+    <div class="d-flex flex-row mb-3 flex-column">
     {% for comment in comments %}
-        <div>
-            <h4>{{comment.user}}</h4>
+        <div class="mb-5 p-5">
+            <h4 class="">{{comment.user}}</h4>
             <p>{{comment.body_comment}}</p>
         </div>
     {% endfor%}
+    </div>
 
     <form action="" method="POST">{% csrf_token %}
         
-        <table>{{miForm2.as_table}}</table>
+        <table class="table">{{miForm2.as_table}}</table>
 
         <button type="submit" value="Enviar">Enviar comentario</button> 
 

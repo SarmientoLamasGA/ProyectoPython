@@ -9,6 +9,7 @@ class CrearPostFormulario(forms.Form):
     #posiblemente estos tendrían que cargarse solos como date
     author = forms.CharField()
     #comments = forms.CharField()
+    image = forms.ImageField()
 
 class ComentarPosts(forms.Form):
     user = forms.CharField()

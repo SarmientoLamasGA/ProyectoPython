@@ -7,6 +7,7 @@ class Post(models.Model):
     body = models.TextField()
     tags = models.CharField(max_length = 100)
     author = models.CharField(max_length = 50)
+    image = models.ImageField(upload_to="images", null=True, blank=True)
 
 class Comments(models.Model):
 

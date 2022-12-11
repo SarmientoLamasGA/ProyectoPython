@@ -8,7 +8,7 @@ from .forms import UserForm, UserEditForm, ProfileForm
 
 def user(request):
     images = Avatar.objects.filter(user=request.user.id)
-    return render(request, "user.html", {"url": images[0].image.url})
+    return render(request, "Users/templates/user.html")
 
 def register(request):
     if request.method == "POST":

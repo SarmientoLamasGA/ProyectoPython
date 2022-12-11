@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <div>
+        <h1>Página de usuario</h1>
+        <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
+    </div>
+    <div>
+        <a href="{% url 'Update' %}">Actualizar datos</a>
+    </div>
+    <div>
+        <a href="{% url 'Logout' %}">Cerrar sesión</a>
+    </div>
+    <div class="avatar">
+        <img src="{{url}}" alt="">
+    </div>
+    
+    {% else %}
+    <div>
+        <h1>Has ingresado como invitado</h1>
+        <a href="{% url 'Login' %}">Iniciar sesión</a>
+        <p>¿Deseas registrarte?</p>
+        <a href="{% url 'Register' %}">Ir al registro</a>
+    </div>
+    {% endif %}
+
+
+{% endblock%}

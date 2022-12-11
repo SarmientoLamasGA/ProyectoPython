@@ -4,7 +4,10 @@
     {% if request.user.is_authenticated %}
     <div>
         <h1>Página de usuario</h1>
-        <p>Hola {{request.user.username}}</p>
+        <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
+    </div>
+    <div>
+        <a href="{% url 'Update' %}">Actualizar datos</a>
     </div>
     <div>
         <a href="{% url 'Logout' %}">Cerrar sesión</a>

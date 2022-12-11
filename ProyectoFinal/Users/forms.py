@@ -3,9 +3,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class UserForm(UserCreationForm):
-    username = forms.CharField(max_length=20)
-    password1 = forms.CharField(max_length=20, label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(max_length=20, label='Repetir contraseña', widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "email",
+            "password1",
+            "password2"
+        ]
+        help_texts = {k: "" for k in fields}
+
+class UserEditForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            "email",
+            "password1",
+            "password2"
+        ]
+        help_texts = {k: "" for k in fields}
 
 class ProfileForm(forms.Form):
     email = forms.EmailField(max_length=50)

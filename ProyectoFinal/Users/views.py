@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-# Create your views here.
-=======
 from django.shortcuts import render 
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -51,4 +46,3 @@ def editUser(request):
         userForm = UserEditForm(initial=({"username": usuario.username, "email": usuario.email}))
     
     return render(request, "update.html", {"form": userForm, "usuario": usuario})
->>>>>>> c1ec4b007f1d760887da5628cc2988dccd06dbeb

@@ -1,8 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
-
-# Create your models here.
-=======
 from django.conf import settings
 from django.contrib.auth.models import User
 
@@ -18,4 +14,3 @@ class UserProfile(models.Model):
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="avatar", null=True, blank=True)
->>>>>>> c1ec4b007f1d760887da5628cc2988dccd06dbeb

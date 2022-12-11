@@ -7,13 +7,21 @@
         <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
     </div>
     <div>
+        <form action="" method="POST"> {% csrf_token %}
+            <h3>Cargar imagen de perfil</h3>
+            <table>
+                {{form.as_table}}
+            </table>
+        </form>
+    </div>
+    <div class="avatar">
+        <img src="{{url}}" alt="">
+    </div>
+    <div>
         <a href="{% url 'Update' %}">Actualizar datos</a>
     </div>
     <div>
         <a href="{% url 'Logout' %}">Cerrar sesión</a>
-    </div>
-    <div class="avatar">
-        <img src="{{url}}" alt="">
     </div>
     
     {% else %}

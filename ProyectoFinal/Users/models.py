@@ -13,4 +13,4 @@ class UserProfile(models.Model):
 
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="avatar", null=True, blank=True)
+    image = models.ImageField(upload_to="images", null=True, blank=True)

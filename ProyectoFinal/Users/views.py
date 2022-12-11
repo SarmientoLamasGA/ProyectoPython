@@ -2,13 +2,21 @@ from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 
 from .models import UserProfile, Avatar
-from .forms import UserForm, UserEditForm, ProfileForm
+from .forms import UserForm, UserEditForm, AvatarUpload, ProfileForm
 
 # Create your views here.
 
 def user(request):
+    if request.method == "POST":
+        form = AvatarUpload(request.POST, request.Files)
+        if form.is_valid():
+            form.save()
+            image = form.instance
+            return render(request, "user.html", {"url": image, "form": form})
+    
     images = Avatar.objects.filter(user=request.user.id)
-    return render(request, "user.html", {"url": images[0].image.url})
+    form = AvatarUpload()
+    return render(request, "user.html", {"url": images[0].image.url, "form": form})
 
 def register(request):
     if request.method == "POST":

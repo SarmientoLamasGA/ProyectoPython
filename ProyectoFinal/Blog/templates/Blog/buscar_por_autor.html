@@ -1,0 +1,17 @@
+{% extends "../../static/Blog/index.html" %}
+
+{% block contenido_dinamico%}
+
+
+    <h1>Busca posteos por autor</h1>
+    
+    <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="/buscar/" method="GET">{% csrf_token %}
+
+        <input type="text" name="author" id="author" />
+
+        <input type="submit" value="Buscar" />
+
+    </form>
+
+
+{%endblock%}

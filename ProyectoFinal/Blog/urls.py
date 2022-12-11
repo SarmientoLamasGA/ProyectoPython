@@ -6,4 +6,6 @@ urlpatterns = [
     path('posts/', views.posts, name = "Lista de posts"),
     path('crear_post/', views.crear_post, name = "Crear post"),
     path('post_puntual/<post_id>', views.post_puntual, name = "Post puntual"),
+    path('buscar_autor/', views.buscar_autor, name = "Buscar autor"),
+    path('buscar/', views.buscar)
 ]

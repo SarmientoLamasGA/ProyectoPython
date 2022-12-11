@@ -1,0 +1,24 @@
+{% extends "../../static/Blog/index.html" %} {% block contenido_dinamico%}
+
+<p>Estamos buscando los posteos del autor: {{author}}</p>
+
+{% if posts %}
+
+{% for post in posts %}
+
+<article class="container text-center justify-content-left p-4 col-sm-3 border">
+    <h3><a href="{% url 'Post puntual' post_id=post.id %}">{{post.title}}</a></h3>
+
+    <p>Autor: {{post.author}}</p>
+
+    <p class="m-2 p-1 fs-4 text-truncate">{{post.body}}</p>
+    
+</article>
+
+{% endfor %}
+
+{%else%}
+
+<h3>No hay posteos de ese autor</h3>
+
+{%endif%} {%endblock%}

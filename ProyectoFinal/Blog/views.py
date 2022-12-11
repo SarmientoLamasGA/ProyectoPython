@@ -62,6 +62,27 @@ def post_puntual(request, post_id):
 
     return render(request, 'Blog/templates/Blog/post_puntual.html', {'post':post, 'comments':comments})
 
+def buscar_autor(request):
+
+    return render(request, 'Blog/templates/Blog/buscar_por_autor.html')
+
+def buscar(request):
+
+    print("Hola", request.GET['author'])
+
+    if request.GET['author']:
+
+        author = request.GET['author']
+        posts = Post.objects.filter(author__icontains=author)
+
+        return render(request, "Blog/templates/Blog/resultados_busqueda.html", {"author":author, "posts":posts})
+    
+    else:
+
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
+
 
 
 

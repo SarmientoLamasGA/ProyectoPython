@@ -15,15 +15,18 @@
       <div class="container-fluid">
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <button><a class="navbar-brand" href="{% url 'inicio' %}">Home</a></button>
+              <button><a class="navbar-brand btn" href="{% url 'inicio' %}">Home</a></button>
             </li>
             <li class="nav-item">
-              <button><a class="navbar-brand" href="{% url 'Lista de posts' %}">Posteos</a></button>
+              <button><a class="navbar-brand btn" href="{% url 'Lista de posts' %}">Posteos</a></button>
             </li>
             <li class="nav-item">
-              <button><a class="navbar-brand" href="{% url 'Crear post' %}">Crear post</a></button>
+              <button><a class="navbar-brand btn" href="{% url 'Crear post' %}">Crear post</a></button>
+            </li>
+            <li class="nav-item">
+              <button><a class="navbar-brand btn" href="{% url 'Buscar autor' %}">Buscar por autor</a></button>
             </li>
           </ul>
           <form class="d-flex" role="search">

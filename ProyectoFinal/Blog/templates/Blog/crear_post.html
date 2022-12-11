@@ -2,17 +2,16 @@
 
 {% block contenido_dinamico%}
 
-<button><a href="{% url 'inicio' %}">Home</a></button>
 
     <h1>Escribe tu post</h1>
     
-    <form action="" method="POST">{% csrf_token %}
-        
-            <table>{{miForm.as_table}}</table>
+    <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="" method="POST">{% csrf_token %}
 
-            <button type="submit" value="Enviar">Enviar Post</button> 
+        <table class="table align-items-center border m-2 p-1 fs-4">{{miForm.as_table}}</table>
+            
+        <button type="submit" value="Enviar">Enviar Post</button> 
 
-        </form>
+    </form>
 
 
 {%endblock%}

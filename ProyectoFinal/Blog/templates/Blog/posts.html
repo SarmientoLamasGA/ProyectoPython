@@ -2,18 +2,23 @@
 
 {% block contenido_dinamico%}
     
-    <button><a href="{% url 'inicio' %}">Home</a></button>
     <h1>Posteos</h1>
     
+    <div class="container">
+        <div class="row flex-row-reverse d-flex justify-content-start">
     {% for post in posts %}
 
-    <article>
-        <button><a href="{% url 'Post puntual' post_id=post.id %}">{{post.title}}</a></button>
-        <p>{{post.body}}</p>
+    <article class="container text-center justify-content-left p-4 col-sm-3 border">
+        <h3><a href="{% url 'Post puntual' post_id=post.id %}">{{post.title}}</a></h3>
+
         <p>Autor: {{post.author}}</p>
+
+        <p class="m-2 p-1 fs-4 text-truncate">{{post.body}}</p>
+        
     </article>
 
     {% endfor %}
-
+</div>
+    </div>
 
 {%endblock%}

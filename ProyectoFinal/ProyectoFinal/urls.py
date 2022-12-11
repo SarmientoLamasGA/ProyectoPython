@@ -18,6 +18,5 @@ from django.urls import path,re_path, include
 from .views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('user/', include('Users.urls')),
-    re_path('home/', include('Blog.urls'))
+    re_path('', include('Blog.urls'))
 ]

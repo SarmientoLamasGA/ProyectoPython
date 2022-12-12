@@ -16,13 +16,11 @@ def user(request):
             form.save()
             image = form.instance
             return render(request, "user.html", {"url": image, "form": form})
-    
-    images = Avatar.objects.get(user=request.user)
-    url = images.image.url
-    #url = "ProyectoFinal" + url
-    print(url)
-    form = AvatarUpload()
-    return render(request, "user.html", {"url": url, "form": form})
+    else:
+        images = Avatar.objects.get(user=request.user)
+        url = images.image.url
+        form = AvatarUpload()
+        return render(request, "user.html", {"url": url, "form": form})
 
 def register(request):
     if request.method == "POST":

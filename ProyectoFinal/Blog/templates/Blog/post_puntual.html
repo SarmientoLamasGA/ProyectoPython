@@ -9,22 +9,30 @@
     {% endif%}
     <p class="fs-5">{{post.body}}</p>
     <p class="fs-4">Autor: {{post.author}}</p>
+    {% if post.author == request.user.username or user.is_superuser %}
+    <a href="{% url 'Editar post' post.id %}" class="btn btn-success">Editar post</a>
+    {% endif%}
+    {% if post.author == request.user.username or user.is_superuser %}
+    <a href="{% url 'Eliminar post' post.id %}" class="btn btn-success">Eliminar post</a>
+    {% endif%}
 </article>
 
 <div class="container flex-column d-flex justify-content-center align-items-center ">
     
 
     <div class="d-flex  mb-3 flex-column">
-
         <h3 class=" text-center">Comentarios</h3>
-
-    {% for comment in comments %}
+        {% for comment in comments %}
         <div class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4">
             <h4 class="">{{comment.user}}</h4>
             <p>{{comment.body_comment}}</p>
+            {% if comment.user == request.user.username or user.is_superuser %}
+            <a href="{% url 'Eliminar comentario' post.id comment.id %}" class="btn btn-success">Eliminar comentario</a>
+            {% endif%}
         </div>
-    {% endfor%}
+        {% endfor%}
     </div>
+
     {% if request.user.username %}
     <form class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4" action="" method="POST">{% csrf_token %}
         

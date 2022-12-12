@@ -14,7 +14,6 @@ Los posteos se componen de título, cuerpo, imagen y tags. Además, contienen un
 
 Hay una búsqueda por autor en el cual uno ingresa el nombre de este y podrá ver todos sus posteos.
 
-
 #### Promesas a futuro
 
-El objetivo es seguir mejorando las funcionalidades existentes, agregar más búsquedas, poder seguir historias, lectura completa de una historia, entre otras funcionalidades que harían que el blog tenga una experiencia de usuario muchísimo más cómoda e intuitiva.
+El objetivo es seguir mejorando las funcionalidades existentes, agregar más búsquedas, poder seguir historias, lectura completa de una historia, sección de más leídos (posteos como autores), entre otras funcionalidades que harían que el blog tenga una experiencia de usuario muchísimo más cómoda e intuitiva.

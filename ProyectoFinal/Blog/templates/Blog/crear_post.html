@@ -1,11 +1,11 @@
-{% extends "../../static/Blog/index.html" %}
+{% extends "../../../static/Blog/index.html" %}
 
 {% block contenido_dinamico%}
 
 
     <h1>Escribe tu post</h1>
     
-    <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="" method="POST">{% csrf_token %}
+    <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
 
         <table class="table align-items-center border m-2 p-1 fs-4">
             

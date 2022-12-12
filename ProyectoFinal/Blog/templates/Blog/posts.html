@@ -1,11 +1,11 @@
-{% extends "../../static/Blog/index.html" %} 
+{% extends "../../../static/Blog/index.html" %} 
 
 {% block contenido_dinamico%}
     
     <h1>Posteos</h1>
     
     <div class="container">
-        <div class="row flex-row-reverse d-flex justify-content-start">
+        <div class="row flex-row d-flex justify-content-start">
     {% for post in posts %}
 
     <article class="container text-center justify-content-left p-4 col-sm-3 border">

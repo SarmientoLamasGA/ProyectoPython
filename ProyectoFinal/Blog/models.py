@@ -7,7 +7,7 @@ class Post(models.Model):
     body = models.TextField()
     tags = models.CharField(max_length = 100)
     author = models.CharField(max_length = 50)
-    image = models.ImageField(upload_to="images", null=True, blank=True)
+    image = models.ImageField(upload_to="images_post", null=True, blank=True)
 
     def __str__(self):
         return f'Autor: {self.author}, Título: {self.title}, Etiquetas: {self.tags}'

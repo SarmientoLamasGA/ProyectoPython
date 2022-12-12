@@ -7,7 +7,7 @@
         <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
     </div>
     <div>
-        <form action="" method="POST"> {% csrf_token %}
+        <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
             <h3>Cargar imagen de perfil</h3>
             <table>
                 {{form.as_table}}
@@ -15,7 +15,7 @@
         </form>
     </div>
     <div class="avatar">
-        <img src="{{url}}" alt="">
+        <img src="{{url}}" alt="" height="150px" width="150px">
     </div>
     <div>
         <a href="{% url 'Update' %}">Actualizar datos</a>

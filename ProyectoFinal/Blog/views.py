@@ -52,10 +52,13 @@ def post_puntual(request, post_id):
     comments = Comments.objects.filter(post_id__icontains = post_id)
 
     if request.method == 'POST':
+
         miForm2 = ComentarPosts(request.POST)
         user = request.user
         print(miForm2)
+
         if miForm2.is_valid:
+
             info = miForm2.cleaned_data
             comentario = Comments (
             user = user, 
@@ -87,25 +90,24 @@ def borrar_post(request, post_id):
 def modificar_post(request, post_id):
 
     post = Post.objects.get(id=post_id)
-
+    miForm = CrearPostFormulario(request.POST)
+    print(type(miForm))
     if request.method == 'POST':
-        miForm = CrearPostFormulario(request.POST)
-        user = request.user
+
         print(miForm)
         if miForm.is_valid:
             info = miForm.cleaned_data
-            image = request.FILES.get('image')
-            post = Post (
-                title = info['title'], 
-            date = datetime.datetime.now(), 
-            body = info['body'], 
-            tags = info['tags'], 
-            author = user, 
-            image = image
-            )
+            print(type(info))
+            print(post)
+            post.title = info['title'], 
+            post.date = datetime.datetime.now(), 
+            post.body = info['body'], 
+            post.tags = info['tags'], 
+            print(post)
             post.save()
 
-            return redirect('../post_puntual/'+str(post.id),{ 'post_id': post.id})
+            return redirect('../post_puntual/'+str(post.id))
+
     else: 
     
         miForm = CrearPostFormulario(initial={
@@ -117,8 +119,7 @@ def modificar_post(request, post_id):
         "image": post.image,
         })
 
-
-    return render(request, "Blog/templates/Blog/modificar_post.html", {"miForm":miForm, "post_id": post_id})
+    return render(request, "Blog/templates/Blog/modificar_post.html", {"miForm":miForm})
 
 @login_required
 def borrar_comentario(request, post_id, comment_id):

@@ -7,7 +7,11 @@
     
     <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="" method="POST">{% csrf_token %}
 
-        <table class="table align-items-center border m-2 p-1 fs-4">{{miForm.as_table}}</table>
+        <table class="table align-items-center border m-2 p-1 fs-4">
+            
+            {{miForm.as_table}}
+            <p>Autor: {{request.user.username}}</p>
+        </table>
             
         <button type="submit" value="Enviar">Enviar Post</button> 
 

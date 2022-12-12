@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 import datetime
+from Users.forms import UserForm
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 
@@ -10,15 +12,18 @@ def inicio(request):
 
     return render(request, 'Blog/static/Blog/index.html')
 
+
+@login_required
 def crear_post(request):
 
     if request.method == 'POST':
         miForm = CrearPostFormulario(request.POST)
+        user = request.user
         print(miForm)
         if miForm.is_valid:
             info = miForm.cleaned_data
 
-            post = Post (title = info['title'], date = datetime.datetime.now(), body = info['body'], tags = info['tags'], author = info['author'])
+            post = Post (title = info['title'], date = datetime.datetime.now(), body = info['body'], tags = info['tags'], author = user)
             post.save()
             print(post.id)
 
@@ -44,11 +49,12 @@ def post_puntual(request, post_id):
 
     if request.method == 'POST':
         miForm2 = ComentarPosts(request.POST)
+        user = request.user
         print(miForm2)
         if miForm2.is_valid:
             info = miForm2.cleaned_data
 
-            comentario = Comments (user = info['user'], body_comment = info['body_comment'], post_id = post.id)
+            comentario = Comments (user = user, body_comment = info['body_comment'], post_id = post.id)
             comentario.save()
 
 

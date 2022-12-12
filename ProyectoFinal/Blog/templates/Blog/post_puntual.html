@@ -22,14 +22,24 @@
         </div>
     {% endfor%}
     </div>
-
+    {% if request.user.username %}
     <form class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4" action="" method="POST">{% csrf_token %}
         
-        <table class="table align-items-center border m-2 p-2">{{miForm2.as_table}}</table>
+        <table class="table align-items-center border m-2 p-2">
+            {{miForm2.as_table}}
+            <p>Usuario: {{request.user.username}}</p>
+        </table>
 
         <button type="submit" value="Enviar">Enviar comentario</button> 
+    
 
     </form>
+
+    {%else%}
+
+    <p>Para comentar tenés que loggearte</p>
+
+    {% endif %}
 </div>
 
 {%endblock%}

@@ -13,7 +13,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-
+{% block contenido_cambiante %}
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
@@ -22,17 +22,21 @@
             <li class="nav-item">
               <button><a class="navbar-brand btn" href="{% url 'Lista de posts' %}">Posteos</a></button>
             </li>
+            {% if request.user.username %}
             <li class="nav-item">
               <button><a class="navbar-brand btn" href="{% url 'Crear post' %}">Crear post</a></button>
             </li>
+            {% endif%}
             <li class="nav-item">
               <button><a class="navbar-brand btn" href="{% url 'Buscar autor' %}">Buscar por autor</a></button>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          {% if request.user.username %}
+          <button><a class="navbar-brand btn" href="{% url 'Logout' %}">Log out</a></button>
+          {%else%}
+          <button><a class="navbar-brand btn" href="{% url 'Login' %}">Log in</a></button>
+          {% endif%}
+          {%endblock%}
         </div>
       </div>
     

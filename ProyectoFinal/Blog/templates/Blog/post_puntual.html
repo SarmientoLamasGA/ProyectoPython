@@ -2,55 +2,70 @@
 
 {% block contenido_dinamico%}
 
-<article class="container text-center align-items-center mb-5 p-5 col-sm-6">
-    <h1 class="fs-7">{{post.title}}</h1>
-    {% if post.image %}
-    <img src="{{ post.image.url }}" width="300px" height="300px">
-    {% endif%}
-    <p class="fs-5">{{post.body}}</p>
-    <p class="fs-4">Autor: {{post.author}}</p>
+<article class="container flex-column d-flex justify-content-center align-items-center ">
+
+    <h1 class="mt-5 mb-5">{{post.title}}</h1>
+
+    <div class="container text-center justify-content-left p-4 mb-4 col-sm-10 border">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" width="300px" height="300px">
+        {% endif%}
+        <p class="fs-4">Autor: {{post.author}}</p>
+        <p class="fs-5 m-5">{{post.body}}</p>
+    </div>
+
     {% if post.author == request.user.username or user.is_superuser %}
-    <a href="{% url 'Editar post' post.id %}" class="btn btn-success">Editar post</a>
+    |   <a href="{% url 'Editar post' post.id %}" class="btn btn-success  mb-2">Editar post</a>
     {% endif%}
+
     {% if post.author == request.user.username or user.is_superuser %}
-    <a href="{% url 'Eliminar post' post.id %}" class="btn btn-success">Eliminar post</a>
+        <a href="{% url 'Eliminar post' post.id %}" class="btn btn-success  mb-2">Eliminar post</a>
     {% endif%}
+
 </article>
 
 <div class="container flex-column d-flex justify-content-center align-items-center ">
     
-
     <div class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4">
-        <h3 class=" text-center">Comentarios</h3>
-        {% for comment in comments %}
-        <div class="table align-items-center border m-2 p-2">
-            <h4 class= 'fs-2 form-control'>Usuario: {{comment.user}}</h4>
-            <p>{{comment.body_comment}}</p>
-            {% if comment.user == request.user.username or user.is_superuser %}
-            <a href="{% url 'Eliminar comentario' post.id comment.id %}" class="btn btn-success">Eliminar comentario</a>
-            {% endif%}
-        </div>
-        {% endfor%}
+
+        <h3 class=" text-center border">Comentarios</h3>
+
+            {% for comment in comments %}
+
+                <div class="table align-items-center border m-2 p-2">
+
+                    <h4 class= 'fs-2 form-control'>Usuario: {{comment.user}}</h4>
+                    <p>{{comment.body_comment}}</p>
+
+                    {% if comment.user == request.user.username or user.is_superuser %}
+                        <a href="{% url 'Eliminar comentario' post.id comment.id %}" class="btn btn-success">Eliminar comentario</a>
+                    {% endif%}
+
+                </div>
+
+            {% endfor%}
+
     </div>
 
     {% if request.user.username %}
-    <form class="row flex-row d-flex justify-content-center align-items-center m-2 p-2 sm-4" action="" method="POST">{% csrf_token %}
+
+        <form class="container text-center table align-items-center border mb-5 mt-5 p-5 col-sm-6" action="" method="POST">{% csrf_token %}
+
+            <table class="table align-items-center border m-2 p-2">
+                {{miForm2.as_table}}
+                <p class= 'fs-2 form-control'>Usuario: {{request.user.username}}</p>
+            </table>
+
+            <button type="submit" value="Enviar" class="btn btn-success m-2">Enviar comentario</button> 
         
-        <table class="table align-items-center border m-2 p-2">
-            {{miForm2.as_table}}
-            <p class= 'fs-2 form-control'>Usuario: {{request.user.username}}</p>
-        </table>
-
-        <button type="submit" value="Enviar">Enviar comentario</button> 
-    
-
-    </form>
+        </form>
 
     {%else%}
 
     <p>Para comentar tenés que loggearte</p>
 
     {% endif %}
+    
 </div>
 
 {%endblock%}

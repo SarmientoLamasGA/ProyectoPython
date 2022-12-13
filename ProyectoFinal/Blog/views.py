@@ -88,10 +88,16 @@ def modificar_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == 'POST':
         data = request.POST
+        image = request.FILES.get('image')
+        
+        if image:
+            post.image = image
+        
         post.title = data.get("title")
         post.date = datetime.datetime.now()
         post.body = data.get("body")
         post.tags = data.get("tags")
+        
         post.save()
         return redirect('../post_puntual/'+str(post.id))
 

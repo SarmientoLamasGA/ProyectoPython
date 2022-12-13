@@ -2,18 +2,18 @@
 
 {% block contenido_dinamico%}
     
-    <h1>Posteos</h1>
-    
     <div class="container">
-        <div class="row flex-row d-flex justify-content-start">
+        <div class="row flex-row d-flex justify-content-start text-center">
+            
+            <h1 class="mt-5 mb-5">Posteos</h1>
     {% for post in posts %}
 
-    <article class="container text-center justify-content-left p-4 col-sm-3 border">
-        <h3><a href="{% url 'Post puntual' post_id=post.id %}">{{post.title}}</a></h3>
+    <article class="container text-center justify-content-left p-4 mb-4 col-sm-3 border">
+        <h3><a href="{% url 'Post puntual' post_id=post.id %}" class="btn btn-success mt-3 fs-4" >{{post.title}}</a></h3>
 
         <p>Autor: {{post.author}}</p>
 
-        <p class="m-2 p-1 fs-4 text-truncate">{{post.body}}</p>
+        <p class="m-2 p-1 fs-5 text-truncate">{{post.body}}</p>
         
     </article>
 

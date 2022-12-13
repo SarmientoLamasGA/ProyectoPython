@@ -2,16 +2,19 @@
 
 {% block contenido_dinamico%}
 
-
-    <h1>Busca posteos por autor</h1>
+<div class="container text-center align-items-center b-5 mt-5 p-5 col-sm-6">
+    <h1 class="mt-5 mb-5">Busca posteos por autor</h1>
+</div>
     
+<div class="container d-flex flex-column text-center align-items-center mb-2 p-5 col-sm-6">
     <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="/buscar/" method="GET">{% csrf_token %}
 
         <input type="text" name="author" id="author" />
 
-        <input type="submit" value="Buscar" />
+        <input type="submit" value="Buscar" class="btn btn-success mb-1"/>
 
     </form>
+</div>
 
 
 {%endblock%}

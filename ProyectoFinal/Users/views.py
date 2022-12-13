@@ -70,14 +70,23 @@ def editUser(request):
     return render(request, "update.html", {"form": userForm, "usuario": usuario})
 
 def editProfile(request):
-    usuario = request.user.pk
+    usuario = User.objects.get(id=request.user.pk)
+    #perfil = UserProfile.objects.get(user=usuario)
+    #print(perfil)
+    
+    profileForm = ProfileForm()
+    print(profileForm)
 
     if request.method == "POST":
+        breakpoint()
         form = ProfileForm(request.POST)
         if form.is_valid():
             info = form.cleaned_data
+            form.user = usuario
             usuario.name = info["name"]
             usuario.lastName = info["lastName"]
             usuario.author = info["author"]
-            
-    return render
+            profileForm.save()
+            return render(request, "userInfo.html", {"form": profileForm})
+        
+    return render(request, "userInfo.html", {"form": profileForm})

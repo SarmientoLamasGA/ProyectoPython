@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Avatar
+from .models import Avatar, UserProfile
 
 class UserForm(UserCreationForm):
     class Meta:
@@ -30,7 +30,7 @@ class AvatarUpload(forms.ModelForm):
         model = Avatar
         fields = ["image"]
 
-class ProfileForm(forms.Form):
-    name = forms.CharField(max_length=40)
-    lastName = forms.CharField(max_length=40)
-    author = forms.BooleanField(label='¿Eres escritor?')
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ("name", "lastName", "author")

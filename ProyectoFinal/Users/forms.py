@@ -24,7 +24,8 @@ class UserEditForm(UserCreationForm):
         ]
         help_texts = {k: "" for k in fields}
 
-class AvatarUpload(forms.Form):
+class AvatarUpload(forms.ModelForm):
+    image = forms.ImageField()
     class Meta:
         model = Avatar
         fields = ["image"]

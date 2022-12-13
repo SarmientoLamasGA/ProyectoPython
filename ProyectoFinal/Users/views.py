@@ -1,4 +1,5 @@
-from django.shortcuts import render 
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -10,17 +11,24 @@ from .forms import UserForm, UserEditForm, AvatarUpload, ProfileForm
 
 @login_required
 def user(request):
+    usuario = User.objects.get(id=request.user.pk)
     if request.method == "POST":
-        form = AvatarUpload(request.POST, request.Files)
+        breakpoint()
+        form = AvatarUpload(request.POST, request.FILES)
         if form.is_valid():
+            form.user = usuario
+            form.image = form.cleaned_data["image"]
             form.save()
-            image = form.instance
+            #avatar = Avatar(user=usuario, avatar=newImage)
+            #Avatar.save(usuario, newImage)
+            image = Avatar.objects.get(user_id=request.user.pk)
             return render(request, "user.html", {"url": image, "form": form})
-    
-    images = Avatar.objects.get(user=request.user)
+
+    try:
+        images = Avatar.objects.create(user=usuario)
+    except:
+        images = Avatar.objects.get(user_id=request.user.pk)
     url = images.image.url
-    #url = "ProyectoFinal" + url
-    print(url)
     form = AvatarUpload()
     return render(request, "user.html", {"url": url, "form": form})
 

@@ -12,13 +12,11 @@
             <table>
                 {{form.as_table}}
             </table>
+            <input type="submit">
         </form>
     </div>
     <div class="avatar">
         <img src="{{url}}" alt="" height="150px" width="150px">
-    </div>
-    <div>
-        <a href="{% url 'Update' %}">Actualizar datos</a>
     </div>
     <div>
         <a href="{% url 'Logout' %}">Cerrar sesión</a>

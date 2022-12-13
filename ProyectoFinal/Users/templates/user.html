@@ -1,4 +1,4 @@
-{% extends "../../static/Blog/index.html" %}
+{% extends "static/Blog/index.html" %}
 
 {% block contenido_dinamico%}
 
@@ -10,9 +10,20 @@
     <div class="container d-flex flex-column text-center align-items-center mb-2 p-5 col-sm-6">
         <a href="{% url 'Update' %}" class="btn btn-success m-2">Actualizar datos</a>
         <a href="{% url 'Logout' %}" class="btn btn-success m-2">Cerrar sesión</a>
+    <div>
+        <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <h3>Cargar imagen de perfil</h3>
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit">
+        </form>
     </div>
     <div class="avatar">
-        <img src="{{url}}" alt="">
+        <img src="{{url}}" alt="" height="150px" width="150px">
+    </div>
+    <div>
+        <a href="{% url 'Logout' %}">Cerrar sesión</a>
     </div>
     
     {% else %}

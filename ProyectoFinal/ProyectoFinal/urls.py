@@ -24,7 +24,4 @@ urlpatterns = [
     re_path('', include('Blog.urls')),
     re_path('user/', include('Users.urls'))
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

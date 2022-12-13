@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Avatar
 
 class UserForm(UserCreationForm):
     class Meta:
@@ -22,6 +23,12 @@ class UserEditForm(UserCreationForm):
             "password2"
         ]
         help_texts = {k: "" for k in fields}
+
+class AvatarUpload(forms.ModelForm):
+    image = forms.ImageField()
+    class Meta:
+        model = Avatar
+        fields = ["image"]
 
 class ProfileForm(forms.Form):
     name = forms.CharField(max_length=40)

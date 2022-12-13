@@ -1,14 +1,36 @@
-from django.shortcuts import render 
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from .models import UserProfile, Avatar
-from .forms import UserForm, UserEditForm, ProfileForm
+from .forms import UserForm, UserEditForm, AvatarUpload, ProfileForm
 
 # Create your views here.
 
+@login_required
 def user(request):
-    images = Avatar.objects.filter(user=request.user.id)
-    return render(request, "Users/templates/user.html")
+    usuario = User.objects.get(id=request.user.pk)
+    if request.method == "POST":
+        breakpoint()
+        form = AvatarUpload(request.POST, request.FILES)
+        if form.is_valid():
+            form.user = usuario
+            form.image = form.cleaned_data["image"]
+            form.save()
+            #avatar = Avatar(user=usuario, avatar=newImage)
+            #Avatar.save(usuario, newImage)
+            image = Avatar.objects.get(user_id=request.user.pk)
+            return render(request, "user.html", {"url": image, "form": form})
+
+    try:
+        images = Avatar.objects.create(user=usuario)
+    except:
+        images = Avatar.objects.get(user_id=request.user.pk)
+    url = images.image.url
+    form = AvatarUpload()
+    return render(request, "user.html", {"url": url, "form": form})
 
 def register(request):
     if request.method == "POST":

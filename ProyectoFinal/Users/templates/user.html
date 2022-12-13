@@ -1,27 +1,26 @@
-{% extends "base.html" %}
+{% extends "../../static/Blog/index.html" %}
 
-{% block content %}
+{% block contenido_dinamico%}
+
     {% if request.user.is_authenticated %}
-    <div>
+    <div class="container text-center align-items-center b-5 mt-5 p-5 col-sm-6">
         <h1>Página de usuario</h1>
         <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
     </div>
-    <div>
-        <a href="{% url 'Update' %}">Actualizar datos</a>
-    </div>
-    <div>
-        <a href="{% url 'Logout' %}">Cerrar sesión</a>
+    <div class="container d-flex flex-column text-center align-items-center mb-2 p-5 col-sm-6">
+        <a href="{% url 'Update' %}" class="btn btn-success m-2">Actualizar datos</a>
+        <a href="{% url 'Logout' %}" class="btn btn-success m-2">Cerrar sesión</a>
     </div>
     <div class="avatar">
         <img src="{{url}}" alt="">
     </div>
     
     {% else %}
-    <div>
+    <div class="container text-center align-items-center  mb-5 mt-5 p-5 col-sm-6">
         <h1>Has ingresado como invitado</h1>
         <a href="{% url 'Login' %}">Iniciar sesión</a>
         <p>¿Deseas registrarte?</p>
-        <a href="{% url 'Register' %}">Ir al registro</a>
+        <a href="{% url 'Register' %}" class="btn btn-success mt-5">Ir al registro</a>
     </div>
     {% endif %}
 

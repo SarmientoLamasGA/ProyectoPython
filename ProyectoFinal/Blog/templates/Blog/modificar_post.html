@@ -3,17 +3,18 @@
 {% block contenido_dinamico%}
 
 
-    <h1>Modificar tu post</h1>
+    <h1 class="mt-5 mb-5 text-center">Modificar tu post</h1>
     
-    <form class="container text-center align-items-center mb-5 p-5 col-sm-6" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+    <form class="container text-center table align-items-center border mb-5 mt-5 p-5 col-sm-6" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
 
-        <table class="table align-items-center border m-2 p-1 fs-4">
+        <table class="table align-items-center border m-2 p-2">
             
             {{miForm.as_table}}
-            <p>Autor: {{request.user.username}}</p>
-        </table>
+            <p class= 'fs-2 form-control'>Autor: {{request.user.username}}</p>
             
-        <button type="submit" value="Modificar">Modificar Post</button> 
+        </table>
+
+        <button type="submit" value="Modificar" class="btn btn-success mt-5">Modificar Post</button> 
 
     </form>
 

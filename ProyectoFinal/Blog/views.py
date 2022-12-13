@@ -18,21 +18,18 @@ def crear_post(request):
     if request.method == 'POST':
         miForm = CrearPostFormulario(request.POST)
         user = request.user
-        print(miForm)
-        if miForm.is_valid:
+        if miForm.is_valid():
             info = miForm.cleaned_data
             image = request.FILES.get('image')
-            print("imagen", image)
             post = Post (
                 title = info['title'], 
-            date = datetime.datetime.now(), 
-            body = info['body'], 
-            tags = info['tags'], 
-            author = user, 
-            image = image
+                date = datetime.datetime.now(), 
+                body = info['body'], 
+                tags = info['tags'], 
+                author = user, 
+                image = image
             )
             post.save()
-
             return redirect('../post_puntual/'+str(post.id),{ 'post_id': post.id})
 
     else:
@@ -88,28 +85,17 @@ def borrar_post(request, post_id):
 
 @login_required
 def modificar_post(request, post_id):
-
     post = Post.objects.get(id=post_id)
-    miForm = CrearPostFormulario(request.POST)
-    print(type(miForm))
     if request.method == 'POST':
-
-        print(miForm)
-        if miForm.is_valid:
-            info = miForm.cleaned_data
-            print(type(info))
-            print(post)
-            post.title = info['title'], 
-            post.date = datetime.datetime.now(), 
-            post.body = info['body'], 
-            post.tags = info['tags'], 
-            print(post)
-            post.save()
-
-            return redirect('../post_puntual/'+str(post.id))
+        data = request.POST
+        post.title = data.get("title")
+        post.date = datetime.datetime.now()
+        post.body = data.get("body")
+        post.tags = data.get("tags")
+        post.save()
+        return redirect('../post_puntual/'+str(post.id))
 
     else: 
-    
         miForm = CrearPostFormulario(initial={
         "title": post.title,
         "date": post.date,

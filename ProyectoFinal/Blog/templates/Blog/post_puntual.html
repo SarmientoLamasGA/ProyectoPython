@@ -15,7 +15,7 @@
     </div>
 
     {% if post.author == request.user.username or user.is_superuser %}
-    |   <a href="{% url 'Editar post' post.id %}" class="btn btn-success  mb-2">Editar post</a>
+        <a href="{% url 'Editar post' post.id %}" class="btn btn-success  mb-2">Editar post</a>
     {% endif%}
 
     {% if post.author == request.user.username or user.is_superuser %}
@@ -65,7 +65,7 @@
     <p>Para comentar tenés que loggearte</p>
 
     {% endif %}
-    
+
 </div>
 
 {%endblock%}

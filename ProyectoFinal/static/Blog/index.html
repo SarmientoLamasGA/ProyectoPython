@@ -31,6 +31,7 @@
             </li>
           </ul>
           {% if request.user.username %}
+          <button><a class="navbar-brand btn" href="{% url 'User Home' %}">Perfil</a></button>
           <button><a class="navbar-brand btn" href="{% url 'Logout' %}">Log out</a></button>
           {%else%}
           <button><a class="navbar-brand btn" href="{% url 'Login' %}">Log in</a></button>

@@ -86,10 +86,11 @@ def borrar_post(request, post_id):
 @login_required
 def modificar_post(request, post_id):
     post = Post.objects.get(id=post_id)
+
     if request.method == 'POST':
         data = request.POST
         image = request.FILES.get('image')
-        
+
         if image:
             post.image = image
         

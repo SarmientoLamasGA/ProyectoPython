@@ -46,3 +46,16 @@ def editUser(request):
         userForm = UserEditForm(initial=({"username": usuario.username, "email": usuario.email}))
     
     return render(request, "update.html", {"form": userForm, "usuario": usuario})
+
+def editProfile(request):
+    usuario = request.user.pk
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            usuario.name = info["name"]
+            usuario.lastName = info["lastName"]
+            usuario.author = info["author"]
+            
+    return render

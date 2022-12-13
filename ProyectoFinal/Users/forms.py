@@ -24,7 +24,6 @@ class UserEditForm(UserCreationForm):
         help_texts = {k: "" for k in fields}
 
 class ProfileForm(forms.Form):
-    email = forms.EmailField(max_length=50)
     name = forms.CharField(max_length=40)
     lastName = forms.CharField(max_length=40)
     author = forms.BooleanField(label='¿Eres escritor?')

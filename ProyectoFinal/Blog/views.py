@@ -86,6 +86,7 @@ def borrar_post(request, post_id):
 @login_required
 def modificar_post(request, post_id):
     post = Post.objects.get(id=post_id)
+    print(post)
     
     
     if request.method == 'POST':

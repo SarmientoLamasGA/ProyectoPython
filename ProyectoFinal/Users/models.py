@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=40, null=False)
-    lastName = models.CharField(max_length=40, null=False)
-    author = models.BooleanField(null=False)
+class UserProfile(User):
+    name = models.CharField(max_length=40, null=True)
+    lastName = models.CharField(max_length=40, null=True)
+    author = models.BooleanField(null=False, default=False)
     def str(self):
         return self.user.username
 

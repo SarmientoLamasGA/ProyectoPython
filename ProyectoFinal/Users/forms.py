@@ -5,7 +5,7 @@ from .models import Avatar, UserProfile
 
 class UserForm(UserCreationForm):
     class Meta:
-        model = User
+        model = UserProfile
         fields = [
             "username",
             "email",

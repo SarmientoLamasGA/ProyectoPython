@@ -13,21 +13,17 @@ from .forms import UserForm, UserEditForm, AvatarUpload, ProfileForm
 def user(request):
     usuario = User.objects.get(id=request.user.pk)
     if request.method == "POST":
-        breakpoint()
         form = AvatarUpload(request.POST, request.FILES)
         if form.is_valid():
-            form.user = usuario
-            form.image = form.cleaned_data["image"]
-            form.save()
-            #avatar = Avatar(user=usuario, avatar=newImage)
-            #Avatar.save(usuario, newImage)
-            image = Avatar.objects.get(user_id=request.user.pk)
-            return render(request, "user.html", {"url": image, "form": form})
+            avatar = Avatar.objects.get(user=usuario)
+            avatar.image = form.cleaned_data["image"]
+            avatar.save()
+            return render(request, "user.html", {"url": avatar.image.url, "form": form})
 
     try:
-        images = Avatar.objects.create(user=usuario)
-    except:
         images = Avatar.objects.get(user_id=request.user.pk)
+    except:
+        images = Avatar.objects.create(user=usuario)
     url = images.image.url
     form = AvatarUpload()
     return render(request, "user.html", {"url": url, "form": form})
@@ -70,7 +66,6 @@ def editUser(request):
     return render(request, "update.html", {"form": userForm, "usuario": usuario})
 
 def editProfile(request):
-    breakpoint()
     perfil = request.user.userprofile
     profileForm = ProfileForm()
 

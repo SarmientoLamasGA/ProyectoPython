@@ -91,13 +91,12 @@ def editProfile(request):
 
     if request.method == "POST":
         form = ProfileForm(request.POST)
-        form_avatar = AvatarUpload(request.POST, request.FILES)
         if form.is_valid():
             info = form.cleaned_data
             perfil.name = info["name"]
             perfil.lastName = info["lastName"]
             perfil.author = info["author"]
             perfil.save()
-            return render(request, "userInfo.html", {"profile": perfil, "url":url})
+            return render(request, "userInfo.html", {"profile": perfil, "url":url, "form": profileForm})
         
     return render(request, "userInfo.html", {"form": profileForm, "profile":perfil})

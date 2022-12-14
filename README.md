@@ -2,6 +2,10 @@
 
 El proyecto aquí presente es un blog de novelas y libros eléctronicos que funciona como entrega para el proyecto final del curso de Django de la plataforma de enseñanza Coderhouse realizado por los alumnos Gabriel Sarmiento Lamas y Guido Canle. Este está realizado en Django, utilizando distintas herramientas que provienen tanto de este framework como conocimientos generales y particulares en programación.
 
+## División de tareas
+
+La lógica de Usuario fue realizada por Gabriel Sarmiento Lamas y la del Blog por Guido Canle. El planeamiento, decisiones estéticas y el arreglo de fallos fue realizado en conjunto.
+
 ## Contenido
 
 La idea es que sea un blog con posteos de diversos autores que produzcan contenido del estilo novelas y/o libros divididos en capítulos o partes que serán subidas en base a la disponibilidade de estos creadores.

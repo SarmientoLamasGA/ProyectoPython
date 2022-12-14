@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from Users.models import UserProfile
 import datetime
 from django.contrib.auth.decorators import login_required
 
@@ -14,26 +15,30 @@ def inicio(request):
 
 @login_required
 def crear_post(request):
+    profile = UserProfile.objects.get(user_ptr_id=request.user.pk)
+    
+    if profile.author:    
+        if request.method == 'POST':
+            miForm = CrearPostFormulario(request.POST)
+            user = request.user
+            if miForm.is_valid():
+                info = miForm.cleaned_data
+                image = request.FILES.get('image')
+                post = Post (
+                    title = info['title'], 
+                    date = datetime.datetime.now(), 
+                    body = info['body'], 
+                    tags = info['tags'], 
+                    author = user, 
+                    image = image
+                )
+                post.save()
+                return redirect('../post_puntual/'+str(post.id),{ 'post_id': post.id})
 
-    if request.method == 'POST':
-        miForm = CrearPostFormulario(request.POST)
-        user = request.user
-        if miForm.is_valid():
-            info = miForm.cleaned_data
-            image = request.FILES.get('image')
-            post = Post (
-                title = info['title'], 
-                date = datetime.datetime.now(), 
-                body = info['body'], 
-                tags = info['tags'], 
-                author = user, 
-                image = image
-            )
-            post.save()
-            return redirect('../post_puntual/'+str(post.id),{ 'post_id': post.id})
-
+        else:
+            miForm = CrearPostFormulario()
     else:
-        miForm = CrearPostFormulario()
+        return render(request, "static/blog/index.html")
 
     return render(request, 'Blog/templates/Blog/crear_post.html',{"miForm":miForm})
 

@@ -21,16 +21,12 @@
             <li class="nav-item">
               <button><a class="navbar-brand btn" href="{% url 'Lista de posts' %}">Posteos</a></button>
             </li>
-            {% if request.user.username %}
-            <li class="nav-item">
-              <button><a class="navbar-brand btn" href="{% url 'Crear post' %}">Crear post</a></button>
-            </li>
-            {% endif%}
+            
             <li class="nav-item">
               <button><a class="navbar-brand btn" href="{% url 'Buscar autor' %}">Buscar por autor</a></button>
             </li>
           </ul>
-          {% if request.user.username %}
+          {% if user.is_authenticated %}
           <button><a class="navbar-brand btn" href="{% url 'User Home' %}">Perfil</a></button>
           <button><a class="navbar-brand btn" href="{% url 'Logout' %}">Log out</a></button>
           {%else%}

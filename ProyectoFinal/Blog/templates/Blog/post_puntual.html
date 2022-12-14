@@ -10,7 +10,7 @@
         {% if post.image %}
             <img src="{{ post.image.url }}" width="300px" height="300px">
         {% endif%}
-        <p class="fs-4">Autor: {{post.author}}</p>
+        <a href="{% url 'Profile' post.author %}"><p class="fs-4">Autor: {{post.author}}</p></a>
         <p class="fs-5 m-5">{{post.body}}</p>
     </div>
 

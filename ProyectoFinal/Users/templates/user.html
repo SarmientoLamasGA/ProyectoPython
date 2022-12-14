@@ -3,14 +3,26 @@
 {% block contenido_dinamico%}
 
     {% if request.user.is_authenticated %}
-    <div class="container text-center align-items-center b-5 mt-5 p-5 col-sm-6">
+    <div class="container text-center align-items-center b-5 mt-5 p-3 col-sm-6">
         <h1>Página de usuario</h1>
         <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
+        <p>Encantado, {{profile.name}} {{profile.lastName}}</p>
+    {% if profile.author%}
+        <p>Eres escritor</p>
+
+        <a class="btn btn-success" href="{% url 'Crear post' %}">Crear post</a>
+
+    {% else%}
+        <p>Eres lector</p>
+    {%endif%}
     </div>
-    <div class="container d-flex flex-column text-center align-items-center mb-2 p-5 col-sm-6">
+    <div class="container d-flex flex-column text-center align-items-center p-5 mb-2 col-sm-6">
+        <div class="avatar mb-5">
+            <img src="{{url}}" alt="" height="150px" width="150px">
+        </div>
         <a href="{% url 'Update' %}" class="btn btn-success m-2">Cambiar contraseña</a>
         <a href="{% url 'Edit Info' %}" class="btn btn-success m-2">Actualizar datos</a>
-        <a href="{% url 'Logout' %}" class="btn btn-success m-2">Cerrar sesión</a>
+        <a href="{% url 'Logout' %}" class="btn btn-danger m-2">Cerrar sesión</a>
     <div>
         <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
             <h3>Cargar imagen de perfil</h3>
@@ -20,12 +32,7 @@
             <input type="submit">
         </form>
     </div>
-    <div class="avatar">
-        <img src="{{url}}" alt="" height="150px" width="150px">
-    </div>
-    <div>
-        <a href="{% url 'Logout' %}">Cerrar sesión</a>
-    </div>
+    
     
     {% else %}
     <div class="container text-center align-items-center  mb-5 mt-5 p-5 col-sm-6">

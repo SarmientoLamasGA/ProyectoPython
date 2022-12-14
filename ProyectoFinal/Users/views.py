@@ -39,7 +39,6 @@ def profile(request, author):
 
     if Post.objects.get(author = author):
         posts = Post.objects.filter(author = author)
-        print("pósts", posts)
         return render(request, "Users/templates/profile.html", {"profile": profile, "url":url, "posts": posts})
 
     return render(request, "Users/templates/profile.html", {"profile": profile, "url":url} )

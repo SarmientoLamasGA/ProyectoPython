@@ -57,7 +57,6 @@ def post_puntual(request, post_id):
 
         miForm2 = ComentarPosts(request.POST)
         user = request.user
-        print(miForm2)
 
         if miForm2.is_valid:
 
@@ -91,7 +90,6 @@ def borrar_post(request, post_id):
 @login_required
 def modificar_post(request, post_id):
     post = Post.objects.get(id=post_id)
-    print(post)
     
     
     if request.method == 'POST':
@@ -124,7 +122,6 @@ def modificar_post(request, post_id):
 
 @login_required
 def borrar_comentario(request, post_id, comment_id):
-
     post = post_id
     comment = Comments.objects.get(id=comment_id)
     comment.delete()
@@ -136,9 +133,6 @@ def buscar_autor(request):
     return render(request, 'Blog/templates/Blog/buscar_por_autor.html')
 
 def buscar(request):
-
-    print("Hola", request.GET['author'])
-
     if request.GET['author']:
 
         author = request.GET['author']

@@ -3,7 +3,12 @@
 {% block contenido_dinamico %}
 <div class="container text-center align-items-center b-5 mt-5 p-3 col-sm-6">
     <h2>Datos de usuario</h2>
-    <p>Tu nombre completo es: {{profile.name}} {{profile.lastName}}</p>
+    {% if profile.name == None and profile.lastName == None%}
+    <p>No han ingresado nombre y apellido</p>
+{% else %}
+<p>Tu nombre completo es: {{profile.name}} {{profile.lastName}}</p>
+{% endif %}
+
     <img src="{{url}}">
 </div>
 
@@ -17,7 +22,7 @@
 <article class="container text-center justify-content-left p-4 mb-4 col-sm-3 border">
     <h3><a href="{% url 'Post puntual' post_id=post.id %}" class="btn btn-success mt-3 fs-4" >{{post.title}}</a></h3>
 
-    <p>Autor: {{posts.author}}</p>
+    <p>Autor: {{post.author}}</p>
 
     <p class="m-2 p-1 fs-5 text-truncate">{{post.body}}</p>
     

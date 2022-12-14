@@ -6,7 +6,11 @@
     <div class="container text-center align-items-center b-5 mt-5 p-3 col-sm-6">
         <h1>Página de usuario</h1>
         <p>Hola {{request.user.username}} tu correo es: {{request.user.email}}</p>
-        <p>Encantado, {{profile.name}} {{profile.lastName}}</p>
+        {% if profile.name == None and profile.lastName == None%}
+            <p>No han ingresado nombre y apellido</p>
+        {% else %}
+            <p>Encantado, {{profile.name}} {{profile.lastName}}</p>
+        {% endif %}
     {% if profile.author%}
         <p>Eres escritor</p>
 

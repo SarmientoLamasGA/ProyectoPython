@@ -1,6 +1,6 @@
 # Blog de novelas
 
-El proyecto aquí presente es un blog de novelas y libros eléctrinos que funciona como entrega para el proyecto final del curso de Django de la plataforma de enseñanza Coderhouse realizado por los alumnos Gabriel Sarmiento Lamas y Guido Canle. Este está realizado en Django, utilizando distintas herramientas que provienen tanto de este framework como conocimientos generales y particulares en programación.
+El proyecto aquí presente es un blog de novelas y libros eléctronicos que funciona como entrega para el proyecto final del curso de Django de la plataforma de enseñanza Coderhouse realizado por los alumnos Gabriel Sarmiento Lamas y Guido Canle. Este está realizado en Django, utilizando distintas herramientas que provienen tanto de este framework como conocimientos generales y particulares en programación.
 
 ## Contenido
 
